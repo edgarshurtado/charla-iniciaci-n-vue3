@@ -1,0 +1,35 @@
+body {
+  margin:0;
+  padding: 0;
+}
+
+header {
+  background:#b84196;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.55);
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  color:white;
+  padding: 10px;
+  font-family: fantasy;
+}
+
+*{
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+a:hover{ 
+  color: #000;
+  text-decoration: none;
+}
+
+.events-list {
+  padding: 16px 0;
+}
+
+input[type=checkbox] {
+  display: inline;
+}
