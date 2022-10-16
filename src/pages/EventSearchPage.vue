@@ -3,7 +3,7 @@
     <header>
       <h1>
         <img
-          src="assets/vue-logo.png"
+          :src="imagesURLs.vueLogo"
           style="height: 35px; margin-left: 16px"
         />
         uscador de eventos
@@ -24,7 +24,7 @@
         </div>
         <div class="row">
           <div class="card">
-            <img class="card__img" src="assets/vue_js_nation.jpeg" />
+            <img class="card__img" :src="imagesURLs.vueNation" />
             <div class="card__text">
               <div class="card__title">Vue.js Nation</div>
               <div class="card__description">
@@ -38,7 +38,7 @@
             </div>
           </div>
           <div class="card">
-            <img class="card__img" src="assets/lechazoconf.svg" />
+            <img class="card__img" :src="imagesURLs.lechazoConf" />
             <div class="card__text">
               <div class="card__title">Lechazo Conf</div>
               <div class="card__description">
@@ -52,7 +52,7 @@
             </div>
           </div>
           <div class="card">
-            <img class="card__img" src="assets/vue_conf_toronto.jpeg" />
+            <img class="card__img" :src="imagesURLs.vueConfToronto" />
             <div class="card__text">
               <div class="card__title">VueConf Toronto</div>
               <div class="card__description">
@@ -62,7 +62,7 @@
             </div>
           </div>
           <div class="card">
-            <img class="card__img" src="assets/vue_conf_us.jpeg" />
+            <img class="card__img" :src="imagesURLs.vueConfUS" />
             <div class="card__text">
               <div class="card__title">Vue Conf US</div>
               <div class="card__description">
@@ -76,7 +76,7 @@
             </div>
           </div>
           <div class="card">
-            <img class="card__img" src="assets/vuejs_conf_de.jpeg" />
+            <img class="card__img" :src="imagesURLs.vueConfDe" />
             <div class="card__text">
               <div class="card__title">Vuejs.de Conf</div>
               <div class="card__description">
@@ -86,7 +86,7 @@
             </div>
           </div>
           <div class="card">
-            <img class="card__img" src="assets/chromeDevSummit.jpeg" />
+            <img class="card__img" :src="imagesURLs.vueDay" />
             <div class="card__text">
               <div class="card__title">Vue Day</div>
               <div class="card__description">
@@ -96,7 +96,7 @@
             </div>
           </div>
           <div class="card">
-            <img class="card__img" src="assets/vue_live.jpeg" />
+            <img class="card__img" :src="imagesURLs.vueLive" />
             <div class="card__text">
               <div class="card__title">VueJS Live</div>
               <div class="card__description">
@@ -111,4 +111,15 @@
   </body>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const imagesURLs = {
+  vueLogo: "assets/vue-logo.png",
+  vueNation: "assets/vue_js_nation.jpeg",
+  lechazoConf: "assets/lechazoconf.svg",
+  vueConfToronto: "assets/vue_conf_toronto.jpeg",
+  vueConfUS: "assets/vue_conf_us.jpeg",
+  vueConfDe: "assets/vuejs_conf_de.jpeg",
+  vueDay: "assets/vue_day.jpeg",
+  vueLive: "assets/vue_live.jpeg",
+};
+</script>
