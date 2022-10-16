@@ -112,7 +112,7 @@
 </template>
 
 <script lang="ts" setup>
-const imagesURLs = {
+const imagesURLs: { [key: string]: string } = {
   vueLogo: "assets/vue-logo.png",
   vueNation: "assets/vue_js_nation.jpeg",
   lechazoConf: "assets/lechazoconf.svg",
