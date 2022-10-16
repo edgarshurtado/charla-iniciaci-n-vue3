@@ -13,14 +13,20 @@
       <div class="container mt-3 mb-3">
         <div class="row">
           <div class="group">
-            <input required type="text" />
+            <input
+              required
+              type="text"
+              :value="inputSearch"
+              @input="searchInputHandler"
+            />
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>Buscar</label>
           </div>
         </div>
         <div style="text-align: end">
-          <input id="" name="" type="checkbox" /> Sólo eventos futuros
+          <input id="" name="" type="checkbox" v-model="onlyFutureEvents" />
+          Sólo eventos futuros
         </div>
         <div class="row">
           <div class="card">
@@ -112,7 +118,10 @@
 </template>
 
 <script lang="ts" setup>
-const imagesURLs = {
+import { ref } from "vue";
+
+// DATA
+const imagesURLs: { [key: string]: string } = {
   vueLogo: "assets/vue-logo.png",
   vueNation: "assets/vue_js_nation.jpeg",
   lechazoConf: "assets/lechazoconf.svg",
@@ -122,4 +131,13 @@ const imagesURLs = {
   vueDay: "assets/vue_day.jpeg",
   vueLive: "assets/vue_live.jpeg",
 };
+
+// LIST FILTERING
+const inputSearch = ref("");
+
+function searchInputHandler(event: Event) {
+  inputSearch.value = (event.target as HTMLInputElement).value;
+}
+
+const onlyFutureEvents = ref(false);
 </script>
