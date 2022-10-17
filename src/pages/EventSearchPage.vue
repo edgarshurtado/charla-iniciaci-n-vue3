@@ -26,32 +26,14 @@
           Sólo eventos futuros
         </div>
         <div class="row">
-          <div
+          <EventCard
             v-for="programmingEvent in filteredEvents"
-            class="card"
             :key="programmingEvent.name"
-          >
-            <img class="card__img" :src="programmingEvent.imgUrl" />
-            <div class="card__text">
-              <div class="card__title">{{ programmingEvent.name }}</div>
-              <div class="card__description">
-                <div
-                  class="card__event-remaing-time card__event-remaining-time--past"
-                >
-                  Pasado
-                </div>
-                <div class="card__event-day">
-                  {{
-                    programmingEvent.startDate.toLocaleDateString("es-ES", {
-                      year: "numeric",
-                      month: "short",
-                      day: "2-digit",
-                    })
-                  }}
-                </div>
-              </div>
-            </div>
-          </div>
+            :name="programmingEvent.name"
+            :img-url="programmingEvent.imgUrl"
+            :start-date="programmingEvent.startDate"
+            ref="event-card"
+          />
         </div>
       </div>
     </section>
@@ -60,6 +42,7 @@
 
 <script lang="ts" setup>
 import { computed, ref } from "vue";
+import EventCard from "@/components/EventCard.vue";
 
 // DATA
 const vueLogo = "assets/vue-logo.png";
