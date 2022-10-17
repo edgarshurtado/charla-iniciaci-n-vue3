@@ -27,7 +27,7 @@
         </div>
         <div class="row">
           <div
-            v-for="programmingEvent in eventsList"
+            v-for="programmingEvent in filteredEvents"
             class="card"
             :key="programmingEvent.name"
           >
@@ -59,7 +59,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 // DATA
 const vueLogo = "assets/vue-logo.png";
@@ -82,7 +82,7 @@ const eventsList = [
   },
   {
     name: "Vue Conf US",
-    startDate: new Date(2022, 3, 23),
+    startDate: new Date(2023, 4, 23),
     imgUrl: "assets/vue_conf_us.jpeg",
   },
   {
@@ -108,6 +108,23 @@ const inputSearch = ref("");
 function searchInputHandler(event: Event) {
   inputSearch.value = (event.target as HTMLInputElement).value;
 }
+
+const filteredEvents = computed(() => {
+  let result = eventsList;
+
+  if (onlyFutureEvents.value) {
+    result = result.filter(
+      (ev) => ev.startDate.getTime() >= new Date().getTime()
+    );
+  }
+
+  const searchValue = inputSearch.value.toLowerCase();
+  if (!searchValue) {
+    return result;
+  }
+
+  return result.filter((ev) => ev.name.toLowerCase().includes(searchValue));
+});
 
 const onlyFutureEvents = ref(false);
 </script>
