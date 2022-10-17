@@ -2,10 +2,7 @@
   <body>
     <header>
       <h1>
-        <img
-          :src="imagesURLs.vueLogo"
-          style="height: 35px; margin-left: 16px"
-        />
+        <img :src="vueLogo" style="height: 35px; margin-left: 16px" />
         uscador de eventos
       </h1>
     </header>
@@ -29,85 +26,29 @@
           Sólo eventos futuros
         </div>
         <div class="row">
-          <div class="card">
-            <img class="card__img" :src="imagesURLs.vueNation" />
+          <div
+            v-for="programmingEvent in eventsList"
+            class="card"
+            :key="programmingEvent.name"
+          >
+            <img class="card__img" :src="programmingEvent.imgUrl" />
             <div class="card__text">
-              <div class="card__title">Vue.js Nation</div>
+              <div class="card__title">{{ programmingEvent.name }}</div>
               <div class="card__description">
                 <div
                   class="card__event-remaing-time card__event-remaining-time--past"
                 >
                   Pasado
                 </div>
-                <div class="card__event-day">26 Ene 2022</div>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card__img" :src="imagesURLs.lechazoConf" />
-            <div class="card__text">
-              <div class="card__title">Lechazo Conf</div>
-              <div class="card__description">
-                <div
-                  class="card__event-remaing-time card__event-remaining-time--past"
-                >
-                  Pasado
+                <div class="card__event-day">
+                  {{
+                    programmingEvent.startDate.toLocaleDateString("es-ES", {
+                      year: "numeric",
+                      month: "short",
+                      day: "2-digit",
+                    })
+                  }}
                 </div>
-                <div class="card__event-day">20 May 2020</div>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card__img" :src="imagesURLs.vueConfToronto" />
-            <div class="card__text">
-              <div class="card__title">VueConf Toronto</div>
-              <div class="card__description">
-                <div class="card__event-remaing-time">11 días</div>
-                <div class="card__event-day">1 Nov 2022</div>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card__img" :src="imagesURLs.vueConfUS" />
-            <div class="card__text">
-              <div class="card__title">Vue Conf US</div>
-              <div class="card__description">
-                <div
-                  class="card__event-remaing-time card__event-remaining-time--past"
-                >
-                  Pasado
-                </div>
-                <div class="card__event-day">23 Mar 2022</div>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card__img" :src="imagesURLs.vueConfDe" />
-            <div class="card__text">
-              <div class="card__title">Vuejs.de Conf</div>
-              <div class="card__description">
-                <div class="card__event-remaing-time">16 días</div>
-                <div class="card__event-day">5 Oct 2022</div>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card__img" :src="imagesURLs.vueDay" />
-            <div class="card__text">
-              <div class="card__title">Vue Day</div>
-              <div class="card__description">
-                <div class="card__event-remaing-time">29 días</div>
-                <div class="card__event-day">18 Nov 2022</div>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card__img" :src="imagesURLs.vueLive" />
-            <div class="card__text">
-              <div class="card__title">VueJS Live</div>
-              <div class="card__description">
-                <div class="card__event-remaing-time">8 días</div>
-                <div class="card__event-day">28 Oct 2022</div>
               </div>
             </div>
           </div>
@@ -121,16 +62,45 @@
 import { ref } from "vue";
 
 // DATA
-const imagesURLs: { [key: string]: string } = {
-  vueLogo: "assets/vue-logo.png",
-  vueNation: "assets/vue_js_nation.jpeg",
-  lechazoConf: "assets/lechazoconf.svg",
-  vueConfToronto: "assets/vue_conf_toronto.jpeg",
-  vueConfUS: "assets/vue_conf_us.jpeg",
-  vueConfDe: "assets/vuejs_conf_de.jpeg",
-  vueDay: "assets/vue_day.jpeg",
-  vueLive: "assets/vue_live.jpeg",
-};
+const vueLogo = "assets/vue-logo.png";
+
+const eventsList = [
+  {
+    name: "Vue.js Nation",
+    startDate: new Date(2022, 0, 26),
+    imgUrl: "assets/vue_js_nation.jpeg",
+  },
+  {
+    name: "Lechazo Conf",
+    startDate: new Date(2020, 4, 20),
+    imgUrl: "assets/lechazoconf.svg",
+  },
+  {
+    name: "VueConf Toronto",
+    startDate: new Date(2022, 10, 1),
+    imgUrl: "assets/vue_conf_toronto.jpeg",
+  },
+  {
+    name: "Vue Conf US",
+    startDate: new Date(2022, 3, 23),
+    imgUrl: "assets/vue_conf_us.jpeg",
+  },
+  {
+    name: "Vuejs.de Conf",
+    startDate: new Date(2022, 7, 5),
+    imgUrl: "assets/vuejs_conf_de.jpeg",
+  },
+  {
+    name: "Vue Day",
+    startDate: new Date(2022, 10, 18),
+    imgUrl: "assets/vue_day.jpeg",
+  },
+  {
+    name: "VueJS Live",
+    startDate: new Date(2022, 7, 28),
+    imgUrl: "assets/vue_live.jpeg",
+  },
+];
 
 // LIST FILTERING
 const inputSearch = ref("");
