@@ -10,7 +10,7 @@
             { 'card__event-remaining-time--past': !isFutureDate(startDate) },
           ]"
         >
-          Pasado
+          {{ humanizeDays(daysUntilEvent(startDate)) }}
         </div>
         <div class="card__event-day">
           {{
@@ -36,5 +36,5 @@ defineProps({
   startDate: Date,
 });
 
-const { isFutureDate } = dates();
+const { isFutureDate, daysUntilEvent, humanizeDays } = dates();
 </script>
