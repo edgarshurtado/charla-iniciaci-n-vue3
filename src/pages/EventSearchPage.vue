@@ -43,6 +43,7 @@
 <script lang="ts" setup>
 import { computed, ref } from "vue";
 import EventCard from "@/components/EventCard.vue";
+import dates from "@/utils/dates";
 
 // DATA
 const vueLogo = "assets/vue-logo.png";
@@ -92,13 +93,13 @@ function searchInputHandler(event: Event) {
   inputSearch.value = (event.target as HTMLInputElement).value;
 }
 
+const { isFutureDate } = dates();
+
 const filteredEvents = computed(() => {
   let result = eventsList;
 
   if (onlyFutureEvents.value) {
-    result = result.filter(
-      (ev) => ev.startDate.getTime() >= new Date().getTime()
-    );
+    result = result.filter((ev) => isFutureDate(ev.startDate));
   }
 
   const searchValue = inputSearch.value.toLowerCase();

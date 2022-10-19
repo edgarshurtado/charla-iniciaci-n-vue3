@@ -4,7 +4,12 @@
     <div class="card__text">
       <div class="card__title">{{ name }}</div>
       <div class="card__description">
-        <div class="card__event-remaing-time card__event-remaining-time--past">
+        <div
+          :class="[
+            'card__event-remaing-time',
+            { 'card__event-remaining-time--past': !isFutureDate(startDate) },
+          ]"
+        >
           Pasado
         </div>
         <div class="card__event-day">
@@ -23,10 +28,13 @@
 
 <script setup lang="ts">
 import { defineProps } from "vue";
+import dates from "@/utils/dates";
 
 defineProps({
   name: String,
   imgUrl: String,
   startDate: Date,
 });
+
+const { isFutureDate } = dates();
 </script>
