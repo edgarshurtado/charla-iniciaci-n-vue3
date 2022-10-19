@@ -41,11 +41,9 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from "vue";
+import { eventListFiltering } from "@/pages/event-search-page/list-filtering";
 import EventCard from "@/components/EventCard.vue";
-import dates from "@/utils/dates";
 
-// DATA
 const vueLogo = "assets/vue-logo.png";
 
 const eventsList = [
@@ -86,29 +84,6 @@ const eventsList = [
   },
 ];
 
-// LIST FILTERING
-const inputSearch = ref("");
-
-function searchInputHandler(event: Event) {
-  inputSearch.value = (event.target as HTMLInputElement).value;
-}
-
-const { isFutureDate } = dates();
-
-const filteredEvents = computed(() => {
-  let result = eventsList;
-
-  if (onlyFutureEvents.value) {
-    result = result.filter((ev) => isFutureDate(ev.startDate));
-  }
-
-  const searchValue = inputSearch.value.toLowerCase();
-  if (!searchValue) {
-    return result;
-  }
-
-  return result.filter((ev) => ev.name.toLowerCase().includes(searchValue));
-});
-
-const onlyFutureEvents = ref(false);
+const { filteredEvents, onlyFutureEvents, inputSearch, searchInputHandler } =
+  eventListFiltering(eventsList);
 </script>
